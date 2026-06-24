@@ -58,6 +58,30 @@ The following table documents the performance acceleration achieved by migrating
 
 ---
 
+## Prerequisites and Environment Setup (Jetson)
+
+Before compiling engines or running inference, the NVIDIA Jetson device requires specific dependencies for TensorRT and PyCUDA.
+
+```bash
+# Update package lists
+sudo apt-get update
+
+# Install TensorRT and its Python developer libraries (includes trtexec)
+sudo apt-get install tensorrt libnvinfer-dev python3-libnvinfer-dev -y
+
+# Install CUDA development toolkit
+sudo apt install -y nvidia-cuda-dev
+
+# Export environment variables for CUDA paths (Add these to ~/.bashrc for permanence)
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# Install PyCUDA for GPU memory allocation during Python inference
+pip3 install pycuda --break-system-packages
+```
+
+---
+
 ## Usage
 
 ### 1. Model Conversion to ONNX (Host System)
